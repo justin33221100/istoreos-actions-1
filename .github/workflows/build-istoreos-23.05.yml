@@ -7,7 +7,7 @@ on:
       lan_ip:
         description: '设置LAN IP地址'
         required: true
-        default: '192.168.10.1'
+        default: '192.168.8.1'
       os_name:
         description: '设置系统名称'
         required: true
@@ -22,7 +22,7 @@ on:
         required: false
         default: 'false'
   schedule:
-   - cron: 0 16 * * *
+   - cron: 0 16 1 * *
 
 env:
   REPO_URL: https://github.com/istoreos/istoreos
@@ -48,7 +48,6 @@ jobs:
           # - istoreos-22.03
           - istoreos-23.05
         ARCHITECTURE:
-          - rk33xx
           - rk35xx
           - x86
         os:
@@ -228,7 +227,7 @@ jobs:
         echo "::set-output name=release_tag::${{ matrix.ARCHITECTURE }}-23.05"
         SET_IP=${{ github.event.inputs.lan_ip }}
         if [ -z "$SET_IP" ]; then
-            SET_IP="192.168.10.1"
+            SET_IP="192.168.8.1"
         fi
         touch release.txt
         echo "
